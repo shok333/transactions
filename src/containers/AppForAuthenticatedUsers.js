@@ -22,10 +22,12 @@ class AppForAuthenticatedUsers extends Component {
                 return <Redirect to="/auth" />
             } else {
                 return (
-                    <div>
+                    <div className="container">
                         <NavbarContainer />
-                        <Route exact path="/" component={TransactionsContainer} />
-                        <Route exact path="/add-transaction" component={AddTransactionContainer} />
+                        <main>
+                          <Route exact path="/" component={TransactionsContainer} />
+                          <Route exact path="/add-transaction" component={AddTransactionContainer} />
+                        </main>
                     </div>
                 );
             }

@@ -8,7 +8,7 @@ export default class App extends Component {
 
     render () {
         return (
-            <div>
+            <div className="app-container">
                 {Router}
             </div>
         );
