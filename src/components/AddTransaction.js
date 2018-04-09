@@ -6,8 +6,8 @@ export default class AddTransaction extends Component {
         super(props);
 
         this.state = {
-            id: '',
-            amount: '',
+            id: 0,
+            amount: 0,
             bankId: this.props.listOfBanks[0].id
         };
 
@@ -15,7 +15,7 @@ export default class AddTransaction extends Component {
     }
 
     changeAmount = (event) => {
-        this.setState({amount: event.currentTarget.value});
+        this.setState({amount: +event.currentTarget.value});
     };
 
     changeBankId = (event) => {
@@ -33,7 +33,7 @@ export default class AddTransaction extends Component {
 
         return (
             <form action="" onSubmit={this.addNewTransactionHandler}>
-                <input type="text" required placeholder="количество транзакций" onChange={this.changeAmount} />
+                <input type="number" required placeholder="количество транзакций" onChange={this.changeAmount} />
                 <select onChange={this.changeBankId}>
                     {listOfBanksOptions}
                 </select>
