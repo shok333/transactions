@@ -6,6 +6,7 @@ export function loadListOfBanksAction () {
         type: LOAD_LIST_OF_BANKS
     };
 }
+
 export function loadListOfBanksSuccessAction (data) {
     return {
         type: LOAD_LIST_OF_BANKS_SUCCESS,

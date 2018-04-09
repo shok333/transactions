@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {loadListOfTransactionsAction, removeTransactionAction} from '../redux/actions/transactionsActions';
 import {loadListOfBanksAction} from '../redux/actions/banksActions';
 import Transactions from '../components/Transactions';
+import PropTypes from 'prop-types';
 
 class TransactionsContainer extends Component {
     constructor (props) {
@@ -82,6 +83,34 @@ function mapDispatchToProps(dispatch) {
         removeTransaction: bindActionCreators(removeTransactionAction, dispatch),
     }
 }
+
+TransactionsContainer.propTypes = {
+    loadListOfTransactions: PropTypes.func.isRequired,
+    loadListOfBanks: PropTypes.func.isRequired,
+    removeTransaction: PropTypes.func.isRequired,
+    listOfTransactionsHasLoaded: PropTypes.bool,
+    listOfBanksHasLoaded: PropTypes.bool,
+    listOfBanks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string
+      })
+    ),
+    listOfTransactions: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          amount: PropTypes.number,
+          bankId: PropTypes.number
+        })
+    ),
+};
+
+TransactionsContainer.defaultProps = {
+    listOfTransactionsHasLoaded: false,
+    listOfBanksHasLoaded: false,
+    listOfBanks: [],
+    listOfTransactions: [],
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsContainer);
 

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { authRequestAction } from '../redux/actions/authActions';
 
 import Auth from '../components/Auth';
+import PropTypes from 'prop-types';
 
 class AuthContainer extends Component {
     submitAuthForm () {
@@ -42,5 +43,16 @@ function mapDispatchToProps(dispatch) {
         authRequest: bindActionCreators(authRequestAction, dispatch),
     }
 }
+
+AuthContainer.propTypes = {
+    previousSessionAuthenticationHasChecked: PropTypes.bool,
+    userHasAuthenticated: PropTypes.bool,
+    authRequest: PropTypes.func.isRequired
+};
+
+AuthContainer.defaultProps = {
+    listOfTransactionsHasLoaded: false,
+    listOfTransactions: false
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);

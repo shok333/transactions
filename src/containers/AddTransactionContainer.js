@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import AddTransaction from '../components/AddTransaction';
 import { addTransactionAction } from '../redux/actions/transactionsActions';
@@ -55,6 +56,23 @@ function mapDispatchToProps(dispatch) {
         addTransaction: bindActionCreators(addTransactionAction, dispatch),
     }
 }
+
+AddTransactionContainer.propTypes = {
+    addTransaction: PropTypes.func.isRequired,
+    listOfTransactionsHasLoaded: PropTypes.bool,
+    listOfTransactions: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            amount: PropTypes.number,
+            bankId: PropTypes.number
+        })
+    )
+};
+
+AddTransactionContainer.defaultProps = {
+    listOfTransactionsHasLoaded: false,
+    listOfTransactions: []
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTransactionContainer);
 

@@ -6,6 +6,7 @@ import {previousSessionAuthAction} from '../redux/actions/authActions';
 import NavbarContainer from '../containers/NavbarContainer'
 import TransactionsContainer from './TransactionsContainer';
 import AddTransactionContainer from './AddTransactionContainer';
+import PropTypes from 'prop-types';
 
 class AppForAuthenticatedUsers extends Component {
     constructor (props) {
@@ -45,5 +46,16 @@ function mapDispatchToProps(dispatch) {
         previousSessionAuth: bindActionCreators(previousSessionAuthAction, dispatch),
     }
 }
+
+AppForAuthenticatedUsers.propTypes = {
+    previousSessionAuthenticationHasChecked: PropTypes.bool,
+    userHasAuthenticated: PropTypes.bool,
+    previousSessionAuth: PropTypes.func.isRequired
+};
+
+AppForAuthenticatedUsers.defaultProps = {
+    listOfTransactionsHasLoaded: false,
+    listOfTransactions: false
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppForAuthenticatedUsers);
