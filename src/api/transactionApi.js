@@ -1,4 +1,4 @@
-import {Get, Post} from "./configApi";
+import {Get, Post} from "./indexApi";
 
 export function loadListOfTransactionsApi () {
     return Get('list-of-transactions')

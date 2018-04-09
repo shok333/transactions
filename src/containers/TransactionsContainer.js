@@ -67,7 +67,7 @@ class TransactionsContainer extends Component {
         );
     }
 }
-//todo proptypes
+
 function mapStateToProps(state) {
     return {
         ...state.transactions,
