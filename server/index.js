@@ -90,10 +90,10 @@ app.post('/add-new-transaction', urlencodedParser, (request, response) => {
 });
 
 app.get('/remove-transaction', (request, response) => {
-    console.log(request.params);
+    console.log();
     response.json({
         ok: true,
-        id: request.params['id']
+        id: request.query.id,
     });
 
     transactionId++;

@@ -3,6 +3,7 @@ export const LOAD_LIST_OF_TRANSACTIONS_SUCCESS = 'LOAD_LIST_OF_TRANSACTIONS_SUCC
 export const ADD_TRANSACTION = 'ADD_TRANSACTION';
 export const ADD_TRANSACTION_SUCCESS = 'ADD_TRANSACTION_SUCCESS';
 export const REMOVE_TRANSACTION = 'REMOVE_TRANSACTION';
+export const REMOVE_TRANSACTION_SUCCESS = 'REMOVE_TRANSACTION_SUCCESS';
 
 export function loadListOfTransactionsAction () {
     return {
@@ -34,6 +35,13 @@ export function addTransactionSuccessAction (transaction) {
 export function removeTransactionAction (id) {
     return {
         type: REMOVE_TRANSACTION,
+        id
+    };
+}
+
+export function removeTransactionSuccessAction (id) {
+    return {
+        type: REMOVE_TRANSACTION_SUCCESS,
         id
     };
 }

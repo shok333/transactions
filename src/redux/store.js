@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './reducers/indexReducer';
-import saga from './saga';
+import indexSaga from './sagas/indexSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -43,7 +43,7 @@ store.subscribe(() => {
     saveStore(store.getState());
 });
 
-sagaMiddleware.run(saga);
+sagaMiddleware.run(indexSaga);
 
 export default store;
 

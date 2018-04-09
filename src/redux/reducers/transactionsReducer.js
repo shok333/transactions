@@ -1,6 +1,7 @@
 import {
     LOAD_LIST_OF_TRANSACTIONS_SUCCESS,
-    ADD_TRANSACTION_SUCCESS
+    ADD_TRANSACTION_SUCCESS,
+    REMOVE_TRANSACTION_SUCCESS
 } from '../actions/transactionsActions';
 import {CLEAR_STORE} from '../actions/indexActions';
 
@@ -24,6 +25,20 @@ export default function transactionsReducer(state = initialState(), action) {
             return {
                 ...state,
                 listOfTransactions: [...state.listOfTransactions, action.transaction]
+            };
+
+        case REMOVE_TRANSACTION_SUCCESS:
+            const newListOfTransactions = state.listOfTransactions.filter((item) => {
+                if (+action.id == +item. id) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            return {
+                ...state,
+                listOfTransactions: newListOfTransactions,
             };
 
         case CLEAR_STORE:
