@@ -77,10 +77,6 @@ AddTransactionContainer.propTypes = {
     )
 };
 
-AddTransactionContainer.defaultProps = {
-    listOfTransactionsHasLoaded: false,
-    listOfTransactions: []
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTransactionContainer);
 

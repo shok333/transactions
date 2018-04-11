@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './reducers/indexReducer';
 import indexSaga from './sagas/indexSaga';
-import {saveStoreApi, loadStoreApi} from 'Api/initStoreApi';
+import {saveStoreApi} from '../api/initStoreApi';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,18 +11,18 @@ const saveStore = (state) => {
     saveStoreApi(state);
 };
 
-export const loadState = () => {
-    loadStoreApi()
-        .then((response) => {
-            if (response && response.ok) {
-                if (response.store === null) {
-                    return null;
-                }
-                console.log(response.store);
-                return response.store;
-            }
-        });
-};
+//export const loadState = () => {
+//    loadStoreApi()
+//        .then((response) => {
+//            if (response && response.ok) {
+//                if (response.store === null) {
+//                    return null;
+//                }
+//                console.log(response.store);
+//                return response.store;
+//            }
+//        });
+//};
 
 const store = createStore(
     reducers,

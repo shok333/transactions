@@ -47,6 +47,7 @@ module.exports = {
             Root: path.resolve(__dirname, 'src'),
             Api: path.resolve(__dirname, 'src/api'),
             Components: path.resolve(__dirname, 'src/components'),
+            Actions: path.resolve(__dirname, 'src/redux/actions'),
         },
     },
 }
