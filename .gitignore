@@ -1,6 +1,7 @@
 /node_modules
 /.idea
-/static/main.css
-/static/main.js
-
+static/main.css
+static/main.js
+server/store.json
+npm-debug.log
 

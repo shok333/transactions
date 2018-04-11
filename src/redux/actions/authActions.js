@@ -11,9 +11,10 @@ export function previousSessionAuthAction () {
     };
 }
 
-export function previousSessionAuthSuccessAction () {
+export function previousSessionAuthSuccessAction (store) {
     return {
-        type: PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS
+        type: PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS,
+        store,
     };
 }
 

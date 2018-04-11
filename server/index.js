@@ -3,6 +3,7 @@ const
     app = express(),
     fs = require('fs'),
     bodyParser = require("body-parser"),
+    jsonParser = bodyParser.json(),
     urlencodedParser = bodyParser.urlencoded({extended: false}),
     cookieParser = require('cookie-parser');
 
@@ -59,16 +60,29 @@ app.get('/list-of-banks', (request, response) => {
 
 app.get('/previous-session-auth', (request, response) => {
     if (request.cookies.token && request.cookies.token === 'token') {
-        response.json({
-            ok: true
+        fs.readFile('server/store.json', (error, page) => {
+            try {
+                response.json({
+                  ok: true,
+                  store: JSON.parse(page),
+                });
+            }
+            catch (e) {
+                response.json({
+                    ok: false,
+                    message: e
+                });
+            }
+
+            response.end();
         });
+
     } else {
         response.json({
             ok: false
         });
+        response.end();
     }
-
-    response.end();
 });
 
 app.post('/get-token', urlencodedParser, (request, response) => {
@@ -87,6 +101,14 @@ app.post('/add-new-transaction', urlencodedParser, (request, response) => {
     });
 
     transactionId++;
+});
+
+app.post('/save-store', jsonParser, (request, response) => {
+    fs.writeFile('server/store.json', JSON.stringify(request.body));
+    response.json({
+      ok: true,
+      id: request.query.id,
+    });
 });
 
 app.get('/remove-transaction', (request, response) => {

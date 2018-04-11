@@ -6,8 +6,8 @@ import {authRequestSuccessAction, previousSessionAuthSuccessAction, previousSess
 
 export function* previousSessionAuth() {
     const response = yield call(previousSessionAuthApi);
-    if(response && response.ok) {
-        yield put(previousSessionAuthSuccessAction());
+    if (response && response.ok) {
+        yield put(previousSessionAuthSuccessAction(response.store));
     } else {
         yield put(previousSessionAuthFailedAction());
     }

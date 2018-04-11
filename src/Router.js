@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Auth from './containers/AuthContainer';
 import TransactionsContainer from './containers/TransactionsContainer';
 import AddTransactionContainer from './containers/AddTransactionContainer';
-import NavbarContainer from './containers/NavBarContainer'
+import NavBarContainer from 'Root/containers/NavBarContainer'
 
-// export default (
-
-// );
 class PrivateRoute extends Component {
     render () {
         const { userHasAuthenticated, previousSessionAuthenticationHasChecked } = this.props;
@@ -20,7 +16,7 @@ class PrivateRoute extends Component {
             } else {
                 return (
                     <div>
-                        <NavbarContainer />
+                        <NavBarContainer />
                         <Route exact path="/" component={TransactionsContainer} />
                         <Route exact path="/add-transaction" component={AddTransactionContainer} />
                     </div>

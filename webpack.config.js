@@ -1,4 +1,6 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin"),
+const
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    path = require('path')
 extractSass = new ExtractTextPlugin({
     filename: "[name].css",
     allChunks: true
@@ -11,7 +13,7 @@ module.exports = {
     ],
 
     output: {
-        path: __dirname + '/static',
+        path: path.resolve(__dirname, 'static'),
         filename: '[name].js',
     },
 
@@ -38,5 +40,13 @@ module.exports = {
     },
     plugins: [
         extractSass
-    ]
+    ],
+
+    resolve: {
+        alias: {
+            Root: path.resolve(__dirname, 'src'),
+            Api: path.resolve(__dirname, 'src/api'),
+            Components: path.resolve(__dirname, 'src/components'),
+        },
+    },
 }

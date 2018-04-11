@@ -9,9 +9,10 @@ const postOptions = (data) => {
         method: 'post',
         credentials: 'same-origin',
         headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        dataType: "json"
     };
 };
 
