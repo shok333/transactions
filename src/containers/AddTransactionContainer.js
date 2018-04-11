@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import AddTransaction from '../components/AddTransaction';
-import { addTransactionAction } from '../redux/actions/transactionsActions';
+import {addTransactionAction} from '../redux/actions/transactionsActions';
+import {loadListOfBanksAction} from '../redux/actions/banksActions';
+import {previousSessionAuthAction} from '../redux/actions/authActions';
+
 
 class AddTransactionContainer extends Component {
     constructor (props) {
@@ -12,12 +15,15 @@ class AddTransactionContainer extends Component {
 
         const {
             listOfBanksHasLoaded,
-            loadListOfBanks
+            loadListOfBanks,
+            previousSessionAuth,
         } = this.props;
 
         if (!listOfBanksHasLoaded) {
             loadListOfBanks();
         }
+
+        previousSessionAuth();
     }
 
     addNewTransactionHandler () {
@@ -54,6 +60,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addTransaction: bindActionCreators(addTransactionAction, dispatch),
+        loadListOfBanks: bindActionCreators(loadListOfBanksAction, dispatch),
+        previousSessionAuth: bindActionCreators(previousSessionAuthAction, dispatch),
     }
 }
 

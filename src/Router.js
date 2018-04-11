@@ -1,11 +1,54 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Auth from './containers/AuthContainer';
-import AppForAuthenticatedUsers from './containers/AppForAuthenticatedUsers';
+import TransactionsContainer from './containers/TransactionsContainer';
+import AddTransactionContainer from './containers/AddTransactionContainer';
+import NavbarContainer from './containers/NavBarContainer'
 
-export default (
-    <Switch>
-        <Route exact path="/auth" component={Auth} />
-        <Route path="" component={AppForAuthenticatedUsers} />
-    </Switch>
-);
+// export default (
+
+// );
+class PrivateRoute extends Component {
+    render () {
+        const { userHasAuthenticated, previousSessionAuthenticationHasChecked } = this.props;
+
+        if (previousSessionAuthenticationHasChecked) {
+            if (!userHasAuthenticated) {
+                return <Redirect to="/auth" />
+            } else {
+                return (
+                    <div>
+                        <NavbarContainer />
+                        <Route exact path="/" component={TransactionsContainer} />
+                        <Route exact path="/add-transaction" component={AddTransactionContainer} />
+                    </div>
+                );
+            }
+        }   else {
+            return <Redirect to="/auth" />
+        }
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        ...state.auth,
+    }
+}
+
+PrivateRoute = connect(mapStateToProps)(PrivateRoute);
+
+
+
+export default class Router extends Component {
+    render () {
+        return (
+            <Switch>
+                <Route exact path="/auth" component={Auth} />
+                <PrivateRoute />
+            </Switch>
+        );
+    }
+}
