@@ -9,7 +9,6 @@ export function* saveStore() {
 }
 
 export function* updateStore({store}) {
-    console.log(store);
-    yield put(loadListOfBanksSuccessAction(store.banks));
-    yield put(loadListOfTransactionsSuccessAction(store.transactions));
+    yield put(loadListOfBanksSuccessAction(store.banks.listOfBanks));
+    yield put(loadListOfTransactionsSuccessAction(store.transactions.listOfTransactions));
 }
