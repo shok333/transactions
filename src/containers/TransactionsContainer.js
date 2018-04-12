@@ -1,31 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {loadListOfTransactionsAction, removeTransactionAction} from '../redux/actions/transactionsActions';
-import {loadListOfBanksAction} from '../redux/actions/banksActions';
+import {removeTransactionAction} from '../redux/actions/transactionsActions';
 import Transactions from '../components/Transactions';
 import PropTypes from 'prop-types';
 
 class TransactionsContainer extends Component {
-    constructor (props) {
-        super(props);
-
-        const {
-            listOfTransactionsHasLoaded,
-            listOfBanksHasLoaded,
-            loadListOfTransactions,
-            loadListOfBanks
-        } = this.props;
-
-        if (!listOfTransactionsHasLoaded) {
-            loadListOfTransactions();
-        }
-
-        if (!listOfBanksHasLoaded) {
-            loadListOfBanks();
-        }
-    }
-
     getBankNameUsingIBankId () {
         const { listOfBanks } = this.props;
 
@@ -78,15 +58,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        loadListOfTransactions: bindActionCreators(loadListOfTransactionsAction, dispatch),
-        loadListOfBanks: bindActionCreators(loadListOfBanksAction, dispatch),
         removeTransaction: bindActionCreators(removeTransactionAction, dispatch),
     }
 }
 
 TransactionsContainer.propTypes = {
-    loadListOfTransactions: PropTypes.func.isRequired,
-    loadListOfBanks: PropTypes.func.isRequired,
     removeTransaction: PropTypes.func.isRequired,
     listOfTransactionsHasLoaded: PropTypes.bool,
     listOfBanksHasLoaded: PropTypes.bool,

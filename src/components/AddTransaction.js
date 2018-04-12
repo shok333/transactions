@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
-import {loadListOfBanksAction} from 'Root/redux/actions/banksActions';
 import {addTransactionAction} from 'Root/redux/actions/transactionsActions';
 
 class AddTransaction extends Component {
@@ -10,12 +9,11 @@ class AddTransaction extends Component {
         super(props);
 
         this.state = {
-            id: 0,
             amount: 0,
-            bankId: 0
+            bankId: null
         };
 
-        //this.addNewTransactionHandler = this.props.addNewTransactionHandler.bind(this);
+        this.addNewTransactionHandler = this.addNewTransactionHandler.bind(this);
     }
 
     addNewTransactionHandler (event) {
@@ -25,12 +23,12 @@ class AddTransaction extends Component {
 
         this.props.addTransaction({
             amount,
-            bankId,
+            bankId
         });
     }
 
     changeAmount = (event) => {
-        this.setState({amount: +event.currentTarget.value});
+        this.setState({amount: +event.currentTarget.value, bankId: this.props.listOfBanks[0].id});
     };
 
     changeBankId = (event) => {
@@ -48,11 +46,11 @@ class AddTransaction extends Component {
                         <option key={id} value={id}>{name}</option>
                     )
                 });
-
+            console.log(listOfBanks[0].id)
             return (
                 <form action="" onSubmit={this.addNewTransactionHandler}>
                     <input type="number" required placeholder="количество транзакций" onChange={this.changeAmount} />
-                    <select onChange={this.changeBankId}>
+                    <select defaultValue={listOfBanks[0].id} onChange={this.changeBankId}>
                         {listOfBanksOptions}
                     </select>
                     <input type="submit"/>
@@ -61,10 +59,6 @@ class AddTransaction extends Component {
         }
 
         return false;
-    }
-
-    componentDidMount () {
-        this.props.loadListOfBanks();
     }
 }
 
@@ -77,7 +71,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addTransaction: bindActionCreators(addTransactionAction, dispatch),
-        loadListOfBanks: bindActionCreators(loadListOfBanksAction, dispatch),
     }
 }
 

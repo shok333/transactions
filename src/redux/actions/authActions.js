@@ -4,6 +4,7 @@ export const PREVIOUS_SESSION_AUTH_REQUEST_FAILED = 'PREVIOUS_SESSION_AUTH_REQUE
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_REQUEST_SUCCESS = 'AUTH_REQUEST_SUCCESS';
 export const LOGOUT = 'LOGOUT';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export function previousSessionAuthAction () {
     return {
@@ -40,5 +41,11 @@ export function authRequestSuccessAction () {
 export function logoutAction () {
     return {
         type: LOGOUT,
+    }
+}
+
+export function logoutSuccessAction () {
+    return {
+        type: LOGOUT_SUCCESS,
     }
 }

@@ -17,7 +17,9 @@ export default function authReducer(state = initialState(), action) {
         case PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS:
             return {
                   ...state,
-                  ...action.store,
+                  banks: action.store.banks,
+                  auth: action.store.auth,
+                  transactions: action.store.transactions,
                   previousSessionAuthenticationHasChecked: true,
                   userHasAuthenticated: true,
             }
