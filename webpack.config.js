@@ -1,10 +1,6 @@
 const
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    path = require('path')
-extractSass = new ExtractTextPlugin({
-    filename: "[name].css",
-    allChunks: true
-});
+    MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+    path = require('path');
 
 module.exports = {
     entry: [
@@ -34,12 +30,15 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: extractSass.extract([ 'css-loader', 'sass-loader' ])
+                use: [MiniCssExtractPlugin.loader, "css-loader", 'sass-loader']
             }
         ],
     },
     plugins: [
-        extractSass
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
     ],
 
     resolve: {
