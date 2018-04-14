@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {authRequestAction} from 'Actions/authActions';
-import PropTypes from 'prop-types';
-
 
 class Auth extends Component {
     constructor(props) {

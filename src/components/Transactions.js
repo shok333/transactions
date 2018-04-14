@@ -5,16 +5,34 @@ import PropTypes from 'prop-types';
 import {removeTransactionAction} from 'Actions/transactionsActions';
 
 class Transactions extends Component {
-    getBankNameUsingIBankId = (id) => {
+    getBankNameUsingIBankId = (id) => { //Массив должен быть отсортирован по id по возрастанию
         const {listOfBanks} = this.props;
 
         let targetBankName = null;
 
-        listOfBanks.forEach((item) => {
-            if (item.id === id) {
-                targetBankName = item.name;
+        var mid, low = 0, high = listOfBanks.length-1;
+
+        while (listOfBanks[low].id < id && listOfBanks[high].id > id)
+        {
+            mid = low + Math.floor( ((id-listOfBanks[low].id)*(high-low))/(listOfBanks[high].id-listOfBanks[low].id) );
+
+            if (listOfBanks[mid].id < id) {
+                low = mid + 1;
+            } else if (listOfBanks[mid].id > id) {
+                high = mid-1;
             }
-        });
+            else {
+                targetBankName = listOfBanks[mid].name;
+                break;
+            }
+        }
+
+        if (listOfBanks[low].id === id) {
+            targetBankName = listOfBanks[low].name;
+        }
+        else if (listOfBanks[high].id === id) {
+            targetBankName = listOfBanks[high].name;
+        }
 
         return targetBankName;
     };

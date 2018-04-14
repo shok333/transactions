@@ -18,7 +18,7 @@ class Router extends Component {
                   <Switch>
                       <Route exact path="/auth" render={
                         () => userHasAuthenticated
-                            ? <Redirect to="/" />
+                            ? <Redirect to="/add-transaction" />
                             : <Auth/>
                       } />
                       <Route exact path="/" render={
@@ -35,7 +35,7 @@ class Router extends Component {
                                   <NavBar />
                                   <AddTransaction />
                               </div>
-                            : <Redirect to="/" />
+                            : <Redirect to="/auth" />
                       } />
                   </Switch>
               </BrowserRouter>
