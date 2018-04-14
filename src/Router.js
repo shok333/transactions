@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Auth from './containers/AuthContainer';
-import TransactionsContainer from './containers/TransactionsContainer';
-import AddTransaction from './components/AddTransaction';
-import NavBarContainer from 'Root/containers/NavBarContainer'
+import {Route, Switch, Redirect, BrowserRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Auth from 'Components/Auth';
+import Transactions from 'Components/Transactions';
+import AddTransaction from 'Components/AddTransaction';
+import NavBar from 'Components/NavBar'
 import {bindActionCreators} from 'redux';
-import {previousSessionAuthAction} from './redux/actions/authActions';
+import {previousSessionAuthAction} from 'Actions/authActions';
 
 class Router extends Component {
     render () {
@@ -24,15 +24,15 @@ class Router extends Component {
                       <Route exact path="/" render={
                         () => userHasAuthenticated
                             ? <div>
-                                  <NavBarContainer />
-                                  <TransactionsContainer />
+                                  <NavBar />
+                                  <Transactions />
                               </div>
                             : <Redirect to="/auth" />
                       } />
                       <Route exact path="/add-transaction" render={
                         () => userHasAuthenticated
                             ? <div>
-                                  <NavBarContainer />
+                                  <NavBar />
                                   <AddTransaction />
                               </div>
                             : <Redirect to="/" />
@@ -63,16 +63,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Router);
-
-
-
-//export default class Router extends Component {
-//    render () {
-//        return (
-//            <Switch>
-//                <Route exact path="/auth" component={Auth} />
-//                <PrivateRoute />
-//            </Switch>
-//        );
-//    }
-//}

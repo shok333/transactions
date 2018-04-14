@@ -2,8 +2,8 @@ import {
     LOAD_LIST_OF_TRANSACTIONS_SUCCESS,
     ADD_TRANSACTION_SUCCESS,
     REMOVE_TRANSACTION_SUCCESS
-} from '../actions/transactionsActions';
-import {CLEAR_STORE} from '../actions/indexActions';
+} from 'Actions/transactionsActions';
+import {CLEAR_STORE} from 'Actions/indexActions';
 
 function initialState() {
     return {

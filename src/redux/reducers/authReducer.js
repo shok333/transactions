@@ -2,8 +2,8 @@ import {
     PREVIOUS_SESSION_AUTH_REQUEST_FAILED,
     PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS,
     AUTH_REQUEST_SUCCESS,
-} from '../actions/authActions';
-import {CLEAR_STORE} from "../actions/indexActions";
+} from 'Actions/authActions';
+import {CLEAR_STORE} from "Actions/indexActions";
 
 function initialState() {
     return {

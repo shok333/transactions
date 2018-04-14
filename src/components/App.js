@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Router from '../Router';
+import Router from 'Root/Router';
 
 export default class App extends Component {
     constructor (props) {

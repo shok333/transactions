@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from './redux/store';
-import App from './containers/App';
+import store from 'Root/redux/store';
+import App from 'Components/App';
 
 ReactDOM.render(
     <Provider store={store}>

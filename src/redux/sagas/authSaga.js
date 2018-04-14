@@ -1,10 +1,10 @@
 import cookie from 'react-cookies';
 import {call, put} from 'redux-saga/effects';
-import {clearStoreAction} from '../actions/indexActions';
-import {previousSessionAuthApi, authApi} from '../../api/authApi';
-import {authRequestSuccessAction, previousSessionAuthSuccessAction, previousSessionAuthFailedAction, logoutSuccessAction} from '../actions/authActions';
-import {loadListOfTransactionsAction} from '../actions/transactionsActions';
-import {loadListOfBanksAction} from '../actions/banksActions';
+import {clearStoreAction} from 'Actions/indexActions';
+import {previousSessionAuthApi, authApi} from 'Api/authApi';
+import {authRequestSuccessAction, previousSessionAuthSuccessAction, previousSessionAuthFailedAction, logoutSuccessAction} from 'Actions/authActions';
+import {loadListOfTransactionsAction} from 'Actions/transactionsActions';
+import {loadListOfBanksAction} from 'Actions/banksActions';
 
 export function* previousSessionAuth() {
     const response = yield call(previousSessionAuthApi);
@@ -28,4 +28,8 @@ export function* logout() {
     yield cookie.remove('token');
     yield put(clearStoreAction());
     yield put(logoutSuccessAction());
+}
+
+export function* logoutSuccess() {
+    yield put(previousSessionAuthFailedAction());
 }

@@ -7,19 +7,22 @@ import {
     ADD_TRANSACTION_SUCCESS,
     REMOVE_TRANSACTION,
     REMOVE_TRANSACTION_SUCCESS
-} from '../actions/transactionsActions';
+} from 'Actions/transactionsActions';
 import {
     PREVIOUS_SESSION_AUTH_REQUEST,
     AUTH_REQUEST, LOGOUT, AUTH_REQUEST_SUCCESS,
     LOGOUT_SUCCESS,
     PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS
-} from '../actions/authActions';
-import {LOAD_LIST_OF_BANKS, LOAD_LIST_OF_BANKS_SUCCESS} from '../actions/banksActions';
+} from 'Actions/authActions';
+import {
+    LOAD_LIST_OF_BANKS,
+    LOAD_LIST_OF_BANKS_SUCCESS
+} from 'Actions/banksActions';
 
-import {previousSessionAuth, auth, logout} from './authSaga';
-import {loadListOfTransactions, addTransaction, removeTransaction} from './transactionsSaga';
-import {loadListOfBanks} from './banksSaga';
-import {saveStore, updateStore} from './initStoreSaga';
+import {previousSessionAuth, auth, logout, logoutSuccess} from 'Sagas/authSaga';
+import {loadListOfTransactions, addTransaction, removeTransaction} from 'Sagas/transactionsSaga';
+import {loadListOfBanks} from 'Sagas/banksSaga';
+import {saveStore, updateStore} from 'Sagas/initStoreSaga';
 
 export default function* root() {
     yield takeEvery(PREVIOUS_SESSION_AUTH_REQUEST, previousSessionAuth);
@@ -32,7 +35,7 @@ export default function* root() {
     yield takeEvery(LOAD_LIST_OF_BANKS_SUCCESS, saveStore);
     yield takeEvery(LOAD_LIST_OF_TRANSACTIONS_SUCCESS, saveStore);
     yield takeEvery(AUTH_REQUEST_SUCCESS, saveStore);
-    yield takeEvery(LOGOUT_SUCCESS, saveStore);
+    yield takeEvery(LOGOUT_SUCCESS, logoutSuccess);
     yield takeEvery(ADD_TRANSACTION_SUCCESS, saveStore);
     yield takeEvery(REMOVE_TRANSACTION_SUCCESS, saveStore);
     yield takeEvery(PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS, updateStore);

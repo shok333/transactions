@@ -48,6 +48,8 @@ module.exports = {
             Api: path.resolve(__dirname, 'src/api'),
             Components: path.resolve(__dirname, 'src/components'),
             Actions: path.resolve(__dirname, 'src/redux/actions'),
+            Reducers: path.resolve(__dirname, 'src/redux/reducers'),
+            Sagas: path.resolve(__dirname, 'src/redux/sagas'),
         },
     },
 }

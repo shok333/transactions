@@ -1,7 +1,11 @@
 import {call, put} from 'redux-saga/effects';
-import {removeTransactionSuccessAction, loadListOfTransactionsSuccessAction, addTransactionSuccessAction,} from '../actions/transactionsActions';
-import {loadListOfTransactionsApi, addNewTransactionApi, removeTransactionApi} from '../../api/transactionApi';
-import {saveStoreOnServer} from 'Root/redux/actions/initStoreActions';
+import {loadListOfTransactionsApi, addNewTransactionApi, removeTransactionApi} from 'Api/transactionApi';
+import {saveStoreOnServer} from 'Actions/initStoreActions';
+import {
+    removeTransactionSuccessAction,
+    loadListOfTransactionsSuccessAction,
+    addTransactionSuccessAction,
+} from 'Actions/transactionsActions';
 
 export function* loadListOfTransactions() {
   const response = yield call(loadListOfTransactionsApi);

@@ -1,5 +1,5 @@
-import {LOAD_LIST_OF_BANKS_SUCCESS} from '../actions/banksActions';
-import {CLEAR_STORE} from '../actions/indexActions';
+import {LOAD_LIST_OF_BANKS_SUCCESS} from 'Actions/banksActions';
+import {CLEAR_STORE} from 'Actions/indexActions';
 
 function initialState() {
     return {
