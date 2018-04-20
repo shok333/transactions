@@ -18,7 +18,10 @@ export default function transactionsReducer(state = initialState(), action) {
             return {
                 ...state,
                 listOfTransactionsHasLoaded: true,
-                listOfTransactions: action.listOfTransactions
+                listOfTransactions: [
+                    ...action.listOfTransactions,
+                    ...state.listOfTransactions,
+                ]
             };
 
         case ADD_TRANSACTION_SUCCESS:

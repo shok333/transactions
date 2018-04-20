@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addTransactionAction} from 'root/redux/actions/transactionsActions';
+import {loadListOfBanksAction} from 'root/redux/actions/banksActions';
 
 class AddTransaction extends Component {
     constructor (props) {
@@ -60,6 +61,14 @@ class AddTransaction extends Component {
 
         return false;
     }
+
+    componentDidMount () {
+        const {loadListOfBanks, listOfBanksHasLoaded} = this.props;
+
+        if (!listOfBanksHasLoaded) {
+            loadListOfBanks();
+        }
+    }
 }
 
 function mapStateToProps(state) {
@@ -71,6 +80,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addTransaction: bindActionCreators(addTransactionAction, dispatch),
+        loadListOfBanks: bindActionCreators(loadListOfBanksAction, dispatch),
     }
 }
 

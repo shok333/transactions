@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {removeTransactionAction} from 'root/redux/actions/transactionsActions';
+import {removeTransactionAction, loadListOfTransactionsAction} from 'root/redux/actions/transactionsActions';
+import {loadListOfBanksAction} from 'root/redux/actions/banksActions';
 
 class Transactions extends Component {
     removeTransactionHandler = (event) => {
@@ -50,6 +51,18 @@ class Transactions extends Component {
           </div>
         );
     }
+
+    componentDidMount () {
+        const {loadListOfBanks, listOfTransactionsHasLoaded, loadListOfTransactions, listOfBanksHasLoaded} = this.props;
+
+        if (!listOfBanksHasLoaded) {
+            loadListOfBanks();
+        }
+
+        if (!listOfTransactionsHasLoaded) {
+            loadListOfTransactions();
+        }
+    }
 }
 
 function mapStateToProps(state) {
@@ -62,6 +75,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         removeTransaction: bindActionCreators(removeTransactionAction, dispatch),
+        loadListOfTransactions: bindActionCreators(loadListOfTransactionsAction, dispatch),
+        loadListOfBanks: bindActionCreators(loadListOfBanksAction, dispatch),
     }
 }
 
