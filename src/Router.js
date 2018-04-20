@@ -46,20 +46,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Router);
-//
-// <Route exact path="/" render={
-//     () => userHasAuthenticated
-//         ? <div>
-//             <NavBar />
-//             <Transactions />
-//         </div>
-//         : <Redirect to="/auth" />
-// } />
-// <Route exact path="/add-transaction" render={
-// () => userHasAuthenticated
-//     ? <div>
-//         <NavBar />
-//         <AddTransaction />
-//     </div>
-//     : <Redirect to="/auth" />
-// } />
