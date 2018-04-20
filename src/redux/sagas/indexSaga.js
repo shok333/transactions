@@ -7,22 +7,22 @@ import {
     ADD_TRANSACTION_SUCCESS,
     REMOVE_TRANSACTION,
     REMOVE_TRANSACTION_SUCCESS
-} from 'Actions/transactionsActions';
+} from 'root/redux/actions/transactionsActions';
 import {
     PREVIOUS_SESSION_AUTH_REQUEST,
     AUTH_REQUEST, LOGOUT, AUTH_REQUEST_SUCCESS,
     LOGOUT_SUCCESS,
     PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS
-} from 'Actions/authActions';
+} from 'root/redux/actions/authActions';
 import {
     LOAD_LIST_OF_BANKS,
     LOAD_LIST_OF_BANKS_SUCCESS
-} from 'Actions/banksActions';
+} from 'root/redux/actions/banksActions';
 
-import {previousSessionAuth, auth, logout, logoutSuccess} from 'Sagas/authSaga';
-import {loadListOfTransactions, addTransaction, removeTransaction} from 'Sagas/transactionsSaga';
-import {loadListOfBanks} from 'Sagas/banksSaga';
-import {saveStore, updateStore} from 'Sagas/initStoreSaga';
+import {previousSessionAuth, auth, logout, logoutSuccess} from 'root/redux/sagas/authSaga';
+import {loadListOfTransactions, addTransaction, removeTransaction} from 'root/redux/sagas/transactionsSaga';
+import {loadListOfBanks} from 'root/redux/sagas/banksSaga';
+import {saveStore, updateStore} from 'root/redux/sagas/initStoreSaga';
 
 export default function* root() {
     yield takeEvery(PREVIOUS_SESSION_AUTH_REQUEST, previousSessionAuth);

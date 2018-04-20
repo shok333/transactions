@@ -50,19 +50,19 @@ app.get('/list-of-transactions', (request, response) => {
 
 app.get('/list-of-banks', (request, response) => {
     //Массив должен быть отсортирован по id по возрастанию
+    const map = new Map();
+
     response.json([
-        { id: 1, name: 'Bank 1'},
-        { id: 2, name: 'Bank 2'},
-        { id: 3, name: 'Bank 3'},
-        { id: 4, name: 'Bank 4'},
-        { id: 5, name: 'Bank 5'},
-        { id: 6, name: 'Bank 6'},
-        { id: 7, name: 'Bank 7'},
-        { id: 8, name: 'Bank 8'},
-        { id: 9, name: 'Bank 9'},
-        { id: 10, name: 'Bank 10'},
-        { id: 11, name: 'Bank 11'},
-        { id: 12, name: 'Bank 12'},
+        [1, 'Bank 1'],
+        [2, 'Bank 2'],
+        [3, 'Bank 3'],
+        [4, 'Bank 4'],
+        [5, 'Bank 5'],
+        [6, 'Bank 6'],
+        [7, 'Bank 7'],
+        [8, 'Bank 8'],
+        [9, 'Bank 9'],
+        [10, 'Bank 10'],
     ]);
     response.end();
 });

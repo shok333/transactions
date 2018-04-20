@@ -1,5 +1,5 @@
-import {LOAD_LIST_OF_BANKS_SUCCESS} from 'Actions/banksActions';
-import {CLEAR_STORE} from 'Actions/indexActions';
+import {LOAD_LIST_OF_BANKS_SUCCESS} from 'root/redux/actions/banksActions';
+import {CLEAR_STORE} from 'root/redux/actions/indexActions';
 
 function initialState() {
     return {

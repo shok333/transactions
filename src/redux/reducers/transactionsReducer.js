@@ -2,8 +2,8 @@ import {
     LOAD_LIST_OF_TRANSACTIONS_SUCCESS,
     ADD_TRANSACTION_SUCCESS,
     REMOVE_TRANSACTION_SUCCESS
-} from 'Actions/transactionsActions';
-import {CLEAR_STORE} from 'Actions/indexActions';
+} from 'root/redux/actions/transactionsActions';
+import {CLEAR_STORE} from 'root/redux/actions/indexActions';
 
 function initialState() {
     return {

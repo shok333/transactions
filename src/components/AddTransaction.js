@@ -1,22 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addTransactionAction} from 'Actions/transactionsActions';
-import PropTypes from 'prop-types';
+import {addTransactionAction} from 'root/redux/actions/transactionsActions';
 
 class AddTransaction extends Component {
-    // static propTypes = {
-    //     // addTransaction: PropTypes.func.isRequired,
-    //     listOfTransactionsHasLoaded: PropTypes.bool,
-    //     listOfTransactions: PropTypes.arrayOf(
-    //         PropTypes.shape({
-    //             id: PropTypes.number,
-    //             amount: PropTypes.number,
-    //             bankId: PropTypes.number
-    //         })
-    //     )
-    // };
-
     constructor (props) {
         super(props);
 
@@ -40,7 +27,7 @@ class AddTransaction extends Component {
     changeAmount = (event) => {
         this.setState({
             amount: +event.currentTarget.value,
-            bankId: this.state.bankId ? this.state.bankId : this.props.listOfBanks[0].id,
+            bankId: this.state.bankId ? this.state.bankId : this.props.listOfBanks[0][0],
         });
     };
 
@@ -50,14 +37,15 @@ class AddTransaction extends Component {
 
     render () {
         const {listOfBanks, listOfBanksHasLoaded} = this.props;
+
         if (listOfBanksHasLoaded) {
-            const
-                listOfBanksOptions = listOfBanks.map((item) => {
-                    const {id, name} = item;
-                    return (
-                        <option key={id} value={id}>{name}</option>
-                    )
-                });
+            const listOfBanksOptions = listOfBanks.map((item) => {
+                const [id, name] = item;
+
+                return (
+                    <option key={id} value={id}>{name}</option>
+                )
+            });
 
             return (
                 <form action="" onSubmit={this.addNewTransactionHandler}>
@@ -67,7 +55,7 @@ class AddTransaction extends Component {
                     </select>
                     <input type="submit"/>
                 </form>
-            )
+            );
         }
 
         return false;

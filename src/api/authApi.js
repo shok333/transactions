@@ -1,4 +1,4 @@
-import {Get, Post} from "Api/indexApi";
+import {Get, Post} from "root/api/indexApi";
 
 export function previousSessionAuthApi () {
     return Get('previous-session-auth')

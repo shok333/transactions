@@ -2,7 +2,7 @@ import {NavLink} from 'react-router-dom';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {logoutAction} from 'Actions/authActions';
+import {logoutAction} from 'root/redux/actions/authActions';
 
 class NavBar extends Component {
     logoutHandler = (event) => {
@@ -34,9 +34,5 @@ function mapDispatchToProps(dispatch) {
         logout: bindActionCreators(logoutAction, dispatch),
     }
 }
-
-// NavBar.propTypes = {
-//     logout: PropTypes.func.isRequired
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

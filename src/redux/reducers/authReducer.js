@@ -2,8 +2,8 @@ import {
     PREVIOUS_SESSION_AUTH_REQUEST_FAILED,
     PREVIOUS_SESSION_AUTH_REQUEST_SUCCESS,
     AUTH_REQUEST_SUCCESS,
-} from 'Actions/authActions';
-import {CLEAR_STORE} from "Actions/indexActions";
+} from 'root/redux/actions/authActions';
+import {CLEAR_STORE} from "root/redux/actions/indexActions";
 
 function initialState() {
     return {

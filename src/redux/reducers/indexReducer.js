@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import authReducer from 'Reducers/authReducer';
-import transactionsReducer from 'Reducers/transactionsReducer';
-import banksReducer from 'Reducers/banksReducer';
+import authReducer from 'root/redux/reducers/authReducer';
+import transactionsReducer from 'root/redux/reducers/transactionsReducer';
+import banksReducer from 'root/redux/reducers/banksReducer';
 
 export default combineReducers({
     auth: authReducer,

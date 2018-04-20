@@ -1,8 +1,8 @@
-import {loadListOfBanksSuccessAction} from 'Actions/banksActions';
-import {loadListOfTransactionsSuccessAction} from 'Actions/transactionsActions';
+import {loadListOfBanksSuccessAction} from 'root/redux/actions/banksActions';
+import {loadListOfTransactionsSuccessAction} from 'root/redux/actions/transactionsActions';
 import {call, put} from 'redux-saga/effects';
-import {saveStoreApi} from 'Root/api/initStoreApi';
-import store from 'Root/redux/store';
+import {saveStoreApi} from 'root/api/initStoreApi';
+import store from 'root/redux/store';
 
 export function* saveStore() {
     yield call(saveStoreApi, store.getState());

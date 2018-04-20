@@ -1,42 +1,25 @@
 import React, {Component} from 'react';
-import {Route, Switch, Redirect, BrowserRouter} from 'react-router-dom';
+import {Switch, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Auth from 'Components/Auth';
-import Transactions from 'Components/Transactions';
-import AddTransaction from 'Components/AddTransaction';
-import NavBar from 'Components/NavBar'
+import Auth from 'root/components/Auth';
+import Transactions from 'root/components/Transactions';
+import AddTransaction from 'root/components/AddTransaction';
 import {bindActionCreators} from 'redux';
-import {previousSessionAuthAction} from 'Actions/authActions';
+import {previousSessionAuthAction} from 'root/redux/actions/authActions';
+import GuestRoute from 'root/routes/GuestRoute';
+import UserRoute from 'root/routes/UserRoute';
 
 class Router extends Component {
     render () {
-        const { userHasAuthenticated, previousSessionAuthenticationHasChecked } = this.props;
+        const {previousSessionAuthenticationHasChecked} = this.props;
 
         if (previousSessionAuthenticationHasChecked) {
             return (
               <BrowserRouter>
                   <Switch>
-                      <Route exact path="/auth" render={
-                        () => userHasAuthenticated
-                            ? <Redirect to="/add-transaction" />
-                            : <Auth/>
-                      } />
-                      <Route exact path="/" render={
-                        () => userHasAuthenticated
-                            ? <div>
-                                  <NavBar />
-                                  <Transactions />
-                              </div>
-                            : <Redirect to="/auth" />
-                      } />
-                      <Route exact path="/add-transaction" render={
-                        () => userHasAuthenticated
-                            ? <div>
-                                  <NavBar />
-                                  <AddTransaction />
-                              </div>
-                            : <Redirect to="/auth" />
-                      } />
+                      <GuestRoute exact path="/auth" component={Auth}/>
+                      <UserRoute exact path="/" component={Transactions}/>
+                      <UserRoute exact path="/add-transaction" component={AddTransaction}/>
                   </Switch>
               </BrowserRouter>
             )
@@ -52,7 +35,7 @@ class Router extends Component {
 
 function mapStateToProps(state) {
     return {
-        ...state.auth,
+        previousSessionAuthenticationHasChecked: state.auth.previousSessionAuthenticationHasChecked,
     }
 }
 
@@ -63,3 +46,20 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Router);
+//
+// <Route exact path="/" render={
+//     () => userHasAuthenticated
+//         ? <div>
+//             <NavBar />
+//             <Transactions />
+//         </div>
+//         : <Redirect to="/auth" />
+// } />
+// <Route exact path="/add-transaction" render={
+// () => userHasAuthenticated
+//     ? <div>
+//         <NavBar />
+//         <AddTransaction />
+//     </div>
+//     : <Redirect to="/auth" />
+// } />

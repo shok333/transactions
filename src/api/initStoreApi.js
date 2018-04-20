@@ -1,4 +1,4 @@
-import {Post} from "Api/indexApi";
+import {Post} from "root/api/indexApi";
 
 export function saveStoreApi (store) {
     return Post('save-store', store)
